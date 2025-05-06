@@ -1,0 +1,23 @@
+modules = ["nodejs-20"]
+run = "node ."
+
+[nix]
+channel = "stable-24_05"
+
+[deployment]
+run = ["sh", "-c", "node index.js"]
+
+[[ports]]
+localPort = 5000
+externalPort = 80
+
+[workflows]
+
+[[workflows.workflow]]
+name = "Start Server"
+author = 42276773
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "node webserver.js"
